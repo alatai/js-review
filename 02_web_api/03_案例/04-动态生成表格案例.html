@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    // 1.先去准备好学生的数据
+    let datas = [{
+        name: '魏璎珞',
+        subject: 'JavaScript',
+        score: 100
+    }, {
+        name: '弘历',
+        subject: 'JavaScript',
+        score: 98
+    }, {
+        name: '傅恒',
+        subject: 'JavaScript',
+        score: 99
+    }, {
+        name: '明玉',
+        subject: 'JavaScript',
+        score: 88
+    }, {
+        name: '大猪蹄子',
+        subject: 'JavaScript',
+        score: 0
+    }];
+
+    // tbody，动态创建行
+    let tbody = document.querySelector('tbody');
+
+    for (let i = 0; i < datas.length; i++) {
+        let tr = document.createElement('tr');
+        tbody.append(tr);
+
+        // 行里面创建单元格，td，动态创建属性
+        for (let k in datas[i]) {
+            let td = document.createElement('td');
+            td.innerHTML = datas[i][k];
+            tr.appendChild(td);
+        }
+
+        let td = document.createElement('td');
+        td.innerHTML = '<a href="javascript:;">删除</a>'
+        tr.appendChild(td);
+    }
+
+    // 删除操作
+    let as = document.querySelectorAll('a');
+
+    for (let i = 0; i < as.length; i++) {
+        as[i].onclick = function () {
+            tbody.removeChild(this.parentNode.parentNode);
+        };
+    }
+</script>
+</body>
+</html>

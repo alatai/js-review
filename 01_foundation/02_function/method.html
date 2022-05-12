@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>method</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function() {
+            // 方法
+            // 在一个对象中绑定函数，称为这个对象的方法
+            let xiaoming = {
+                name: '小明',
+                birth: 1990,
+                age: function() {
+                    let y = new Date().getFullYear();
+
+                    return y - this.birth;
+                }
+            };
+
+            console.log(xiaoming.age); // 02_function () {...}
+            console.log(xiaoming.age()); // 30
+
+            // this指向问题
+            // 拆开写
+            /*
+            02_function getAge() {
+                let y = new Date().getFullYear();
+
+                // 在strict模式下让函数的this指向undefined
+                // 在非strict模式下，它重新指向全局对象window
+                return y - this.birth; // Uncaught TypeError: Cannot read property 'birth' of undefined
+            }
+
+            let xiaoming2 = {
+                name: '小明2',
+                birth: 1990,
+                age: getAge
+            };
+
+            // 非strict模式下
+            console.log(xiaoming2.age()); // 30
+            console.log(getAge()); // NaN
+
+            let fn = xiaoming2.age;
+            // 要保证this指向正确，必须用obj.xx()的形式调用
+            console.log(fn()); // NaN
+            */
+
+            let xiaoming3 = {
+                name: '小明3',
+                birth: 1990,
+                age: function() {
+                    // that变量首先捕获this
+                    let that = this;
+
+                    function getAgeFormBirth() {
+                        let y = new Date().getFullYear();
+                        return y - that.birth;
+                    }
+
+                    return getAgeFormBirth();
+                }
+            };
+
+            console.log(xiaoming3.age()); // 30
+
+            // apply
+            // 要指定函数的this指向哪个对象，可以用函数本身的apply方法
+            // apply接收两个参数，第一个是需要绑定的this，第二个是Array，表示函数本身的参数
+            function getAge() {
+                let y = new Date().getFullYear();
+
+                return y - this.birth;
+            }
+
+            let xiaoming4 = {
+                name: '小明4',
+                birth: 1990,
+                age: getAge
+            };
+
+            console.log(xiaoming4.age()); // 30
+            getAge.apply(xiaoming4, []);
+
+            // 另一个与apply()类似的方法是call()
+            // apply()把参数打包成Array再传入
+            // call()把参数按顺序传入
+            console.log(Math.max.apply(null, [3, 4, 5]));
+            console.log(Math.max.call(null, 3, 4, 5));
+
+            // 装饰器
+            // 利用apply()，还可以动态改变函数的行为
+            // JavaScript的所有对象都是动态的，即使内置的函数，也可以重新指向新的函数
+
+        };
+    </script>
+</head>
+
+<body>
+    <div>method</div>
+</body>
+
+</html>

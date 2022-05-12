@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objectMapAndSet</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function () {
+            // 键值对表示对象
+            let Tom = {
+                name: 'Tom',
+                birth: 1990
+            }
+
+            console.log(Tom.name);
+            console.log(Tom.age); // undefined
+
+            // ES6标准新增数据类型
+            // Map(key: value)
+            // 初始化Map需要一个二维数组，或者直接初始化一个空Map
+            let m = new Map([
+                ['Michael', 95],
+                ['Bod', 75],
+                ['Tracy', 85]
+            ]);
+            m.set('Adam', 67);
+            console.log(m);
+
+            let score = m.get('Michael');
+            console.log(score);
+
+            // Set类似Map，一组key的集合，但不存储value（所以没有重复的key）
+            // 创建一个Set，可以提供一个Array作为输入，或者直接创建一个空Set
+            let s = new Set([1, 2, 3]);
+            console.log(s);
+
+            // ES6新增for..of迭代
+            let a = [1, 2, 3];
+            for (let x of a) {
+                console.log(x);
+            }
+
+            // Set
+            for (let x of s) {
+                console.log(x);
+            }
+
+            // Map
+            for (let x of m) {
+                console.log(x[0] + ' = ' + x[1]);
+            }
+        };
+    </script>
+</head>
+
+<body>
+<div>objectMapAndSet</div>
+</body>
+
+</html>

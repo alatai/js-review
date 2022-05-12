@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closure</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function() {
+            // 函数作为返回值
+            // 函数除了可以接受函数作为参数外，还可以把函数作为结果值返回
+            function sum(arr) {
+                return arr.reduce(function(x, y) {
+                    return x + y;
+                });
+            }
+
+            console.log(sum([1, 2, 3, 4, 5])); // 15
+
+            // 如果不需要立即求和，可以返回求和函数，根据需要自己调用
+            function lazy_sum(arr) {
+                // 在lazy_sum中有定义了sum函数，并且内部函数sum可以引用外部函数lazy_sum的参数和局部变量
+                // 当lazy_sum返回函数sum时，相关参数和变量都保存在返回的函数中，这种称为“闭包（closure)”
+                let sum = function() {
+                    return arr.reduce(function(x, y) {
+                        return x + y;
+                    });
+                };
+
+                return sum;
+            }
+
+            let f = lazy_sum([1, 2, 3, 4, 5]);
+            // 调用函数f时，才真正计算求和的结果：
+            console.log(f()); // 15
+
+            // 闭包
+            // 当一个函数返回了一个函数后，其内部的局部变量还被新函数引用
+            function count() {
+                let arr = [];
+
+                for (let i = 1; i <= 3; i++) {
+                    arr.push(function() {
+                        return i * i;
+                    });
+                }
+
+                return arr;
+            }
+
+            let results = count();
+            let f1 = results[0];
+            let f2 = results[1];
+            let f3 = results[2];
+
+            // 使用var时：结果全部是16
+            // 返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了4
+            console.log(f1()); // 16
+            console.log(f2()); // 16
+            console.log(f3()); // 16
+
+            // 再创建一个函数，用该函数的参数绑定循环变量当前的值
+            // 无论该循环变量后续如果更改，已绑定到函数参数的值不变
+            function count2() {
+                let arr = [];
+
+                for (let i = 1; i <= 3; i++) {
+                    arr.push((function(n) {
+                        return function() {
+                            return n * n;
+                        }
+                    })(i)); // 创建一个匿名函数并立刻执行
+                }
+
+                return arr;
+            }
+
+            let results2 = count2();
+            let f4 = results2[0];
+            let f5 = results2[1];
+            let f6 = results2[2];
+
+            console.log(f4()); // 1
+            console.log(f5()); // 4
+            console.log(f6()); // 9
+
+            // 在面向对象的程序设计语言里，要在对象内部封装一个私有变量，可以用修饰一个成员变量
+            // 在没有class机制，只有函数的语言里，借助闭包，同样可以封装一个私有变量
+
+            function create_counter(initial) {
+                let x = initial || 0;
+
+                return {
+                    inc: function() {
+                        x += 1;
+                        // 在返回的对象中，该闭包懈怠了局部变量
+                        // 并且从外部根本无法访问到变量x
+                        return x;
+                    }
+                };
+            }
+
+            let c1 = create_counter();
+            console.log(c1.inc()); // 1
+            console.log(c1.inc()); // 2
+            console.log(c1.inc()); // 3
+
+            let c2 = create_counter(10);
+            console.log(c2.inc()); // 11
+            console.log(c2.inc()); // 12
+            console.log(c2.inc()); // 13
+
+        };
+    </script>
+</head>
+
+<body>
+</body>
+	<div>closure</div>
+</html>

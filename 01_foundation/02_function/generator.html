@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function () {
+            // generator
+            // ES6标准引入的新的数据类型。看上去像一个函数，但可以返回多次
+            // 在函数执行过程中，如果没有遇到return语句，控制权无法交回被调用的代码
+            // 函数末尾如果没有return，就隐含return undefined
+
+            // generator跟函数很像
+            // 由function*定义，并且除了return语句，还可以用yield返回多次
+            function* foo(x) {
+                yield x + 1;
+                yield x + 2;
+
+                return x + 3;
+            }
+
+            // 斐波那契数列
+            function fib(max) {
+                let a = 0;
+                let b = 1;
+                let arr = [0, 1];
+
+                while (arr.length < max) {
+                    [a, b] = [b, a + b];
+                    arr.push(b)
+                }
+
+                return arr;
+            }
+
+            console.log(fib(5)); // [0, 1, 1, 2, 3]
+            console.log(fib(10)); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+            // 使用generator改写
+            function* fib2(max) {
+                let a = 0;
+                let b = 1;
+                let n = 0;
+
+                while (n < max) {
+                    yield a;
+                    [a, b] = [b, a + b];
+                    n++;
+                }
+
+                return;
+            }
+
+            // 调用generator
+            // 式一：next()
+            let fn = fib2(5);
+            // next()方法会执行generator的代码，然后每遇到yield就返回一个对象{value: x, doue: true/false}
+            // value就是yield的返回值
+            // done表示这个generator是否已经执行结束
+            console.log(fn.next()); // {value: 0, done: false}
+            console.log(fn.next()); // {value: 1, done: false}
+            console.log(fn.next()); // {value: 1, done: false}
+            console.log(fn.next()); // {value: 2, done: false}
+            console.log(fn.next()); // {value: 3, done: false}
+            console.log(fn.next()); // {value: undefined, done: true}
+
+            // 方式二：for...of
+            for (let x of fib2(10)) {
+                console.log(x); // 依次输出0, 1, 1, 2, 3, ...
+            }
+
+            // 一个generator就可以实现需要用面向对象才能实现的功能，例如使用一个对象来保存状态
+            // 不使用generator时的ajax
+            /*
+            ajax('http://url-1', data1, 02_function(err, result) {
+                if (err) {
+                    return handle(err);
+                }
+
+                ajax('http://url-2', data2, 02_function(err, result) {
+                    if (err) {
+                        return handle(err);
+                    }
+
+                    ajax('http://url-3', data3, 02_function(err, result) {
+                        if (err) {
+                            return handle(err);
+                        }
+
+                        return success(result);
+                       });
+                });
+            });
+            */
+
+            // 使用generator时的ajax
+            /*
+            try {
+                r1 = yield ajax('http://url-1', data1);
+                r2 = yield ajax('http://url-2', data2);
+                r3 = yield ajax('http://url-3', data3);
+
+                success(r3);
+            } catch (err) {
+                handle(err);
+            }
+            */
+
+        };
+    </script>
+</head>
+
+<body>
+<div>generator</div>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>arrAndStr</title>
+    <script type="text/javascript">
+        // strict模式，强制要求用var/let声明变量
+        'use strict';
+
+        // let msg = prompt();
+
+        window.onload = function () {
+            // 練習1
+            // document.getElementById('main').innerHTML = msg;
+
+            // 練習2
+            let a = [1, 2, 14, 0, -1, 100, 67, 93, -21, 14];
+
+            // max
+            function getMax(arr) {
+                let max = arr[0];
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] > max) {
+                        max = arr[i];
+                    }
+                }
+
+                return max;
+            }
+
+            console.log(getMax(a));
+
+            // min
+            function getMin(arr) {
+                let min = arr[0];
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] < min) {
+                        min = arr[i];
+                    }
+                }
+
+                return min;
+            }
+
+            console.log(getMin(a));
+
+            // sort asc
+            function sort(arr) {
+                let len = arr.length;
+
+                for (let i = 0; i < len; i++) {
+                    for (let j = i + 1; j < len; j++) {
+                        if (arr[i] > arr[j]) {
+                            let temp = arr[j];
+                            arr[j] = arr[i];
+                            arr[i] = temp;
+                        }
+                    }
+                }
+
+                return arr;
+            }
+
+            console.log(sort(a));
+
+            // 字符串
+            // 多行字符串
+            console.log(`多行
+                 字符串
+                 测试`);
+
+            // 模板字符串
+            let name = 'Tom';
+            let age = 20;
+            let message = `Hello ${name}, you are ${age} years old.`;
+            console.log(message);
+
+            // 常见操作
+            let s = 'Hello';
+            console.log(s.length);
+
+            // s[0] = 'X';
+            console.log(s); // Hello
+
+            console.log(s.toUpperCase());
+            console.log(s.toLowerCase())
+
+            // indexOf搜索指定字符串出现的位置
+            console.log(s.indexOf('H'));
+
+            // substring返回指定索引区间的子串
+            console.log(s.substring(2, 3));
+
+            // 数组
+            let arr = [1, 2, 3.14, 'Hello', null, true];
+            console.log(arr.length); // 6
+
+            // 直接给length赋新值会导致数组大小变化
+            arr.length = 3;
+            console.log(arr);
+
+            // slice对应字符串的substring，截取部分数组
+            arr.slice(0, 3); // 从索引0到3，但不包括3
+            console.log(arr);
+
+            // push向数组末尾添加若干元素，pop删除最后一个元素
+            // unshift向数组头部添加...，shift删除第一个元素
+
+            // splice可以从指定的索引开始删除若干元素，然后在从该位置添加若干元素
+            let arr2 = ['Microsoft', 'Apple', 'Yahoo', 'AOL', 'Excite', 'Oracle'];
+            arr2.splice(2, 3, 'Google', 'Facebook');
+            console.log(arr2);
+        };
+    </script>
+</head>
+
+<body>
+<div id="main">arrAndStr</div>
+</body>
+
+</html>

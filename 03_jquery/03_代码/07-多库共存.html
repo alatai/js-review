@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            // jQuery使用$作为标识符，随着jQuery的流行，其他js库也会用这个$作为标识符，这样一起使用会引起冲突
+            // 需要一个解决方案，让jQuery和其他的js库不存在冲突，可以同时存在，这就叫做多库共存
+            // jQuery解决方案
+            // ①把里面的$符号统一改为jQuery，比如jQuery("div")
+            // ②jQuery变量规定新的：$.noConflict() let xx = $.noConflict();
+
+            function $(ele) {
+                return document.querySelector(ele);
+            }
+
+            console.log($("div"));
+            jQuery.each();
+
+            let consume = jQuery.noConflict();
+            console.log(consume("span"));
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<span></span>
+</body>
+</html>

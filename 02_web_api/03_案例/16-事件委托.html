@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<ul>
+    <li>知否知否，点我应有弹框在手！</li>
+    <li>知否知否，点我应有弹框在手！</li>
+    <li>知否知否，点我应有弹框在手！</li>
+    <li>知否知否，点我应有弹框在手！</li>
+    <li>知否知否，点我应有弹框在手！</li>
+</ul>
+
+<script>
+    // 事件委托的核心原理
+    // 不是每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点
+    /*
+        给ul注册点击事件，然后利用事件对象的target来找到当前点击的li
+        因为点击li，事件会冒泡到ul上，ul有注册事件，就会触发事件监听器
+     */
+    let ul = document.querySelector('ul');
+
+    ul.addEventListener('click', function (e) {
+        // alert('知否知否，点我应有弹框在手！');
+        // e.target 这个可以得到我们点击的对象
+        e.target.style.backgroundColor = 'pink';
+    });
+</script>
+
+</body>
+</html>

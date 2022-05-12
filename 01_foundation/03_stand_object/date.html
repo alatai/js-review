@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function () {
+            // Date
+            // 用来表示日期和时间
+            let now = new Date();
+            console.log(now); // Sat Aug 29 2020 22:28:25 GMT+0900 (日本标准时间)
+            console.log(now.getFullYear()); // 2020
+            console.log(now.getMonth()); // 7，JavaScript的月份范围用整数表示是0~11
+            console.log(now.getTime()); // 1598707758544，以number形式表示的时间戳
+
+            // 解析一个符合ISO 8601格式的字符串
+            let date = Date.parse('2020-08-29T22:32:46.875+08:00');
+            console.log(date); // 1598711566875，返回的是时间戳
+
+            // 时间戳
+            let date2 = new Date(1598707758544);
+            console.log(date2); // Sat Aug 29 2020 22:29:18 GMT+0900 (日本标准时间)
+
+            // 时区
+            // Date对象显示的时间总是按浏览器所在时区显示
+            console.log(now.toLocaleString()); // 2020/8/29 下午11:00:57
+            console.log(now.toUTCString()); // Sat, 29 Aug 2020 14:00:33 GMT
+        };
+    </script>
+</head>
+
+<body>
+<div>date</div>
+</body>
+
+</html>

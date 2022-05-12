@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrowFunction</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function () {
+            // 箭头函数
+            // ES6标准新增了一种新的函数
+            x => x * x;
+            // 等价于
+            (function (x) {
+                return x * x;
+            });
+
+            // 箭头函数相当于匿名函数，并且简化了函数定义
+            // 箭头函数内部的this是词法作用域，由上下文确定
+            // 箭头函数完全修复了this指向，this总是指向词法作用域
+
+            // 由于this在箭头函数中已经按照词法作用域绑定了，所以
+            // 用call()和apply()调用箭头函数时，无法对this进行绑定，即传入的第一个参数被忽略
+            let obj = {
+                birth: 1990,
+                getAge: function (year) {
+                    let b = this.birth;
+                    let fn = (y) => y - this.birth;
+                    return fn.call({birth: 2000}, year);
+                }
+            };
+
+            console.log(obj.getAge(2020)); // 30
+        };
+    </script>
+</head>
+
+<body>
+<div>arrowFunction</div>
+</body>
+
+</html>

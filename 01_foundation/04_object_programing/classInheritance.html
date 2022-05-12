@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classInheritance</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function() {
+            // class
+            // ES6引入新的关键字class
+            class Student {
+                constructor(name) {
+                    this.name = name;
+                }
+
+                hello() {
+                    console.log('hello, ' + this.name + '!');
+                }
+            }
+
+            let xiaoming = new Student('小明');
+            console.log(xiaoming);
+            xiaoming.hello();
+
+            // class继承
+            // 直接通过extents来实现
+            class PrimaryStudent extends Student {
+                constructor(name, grade) {
+                    super(name);
+                    this.grade = grade;
+                }
+
+                myGrade() {
+                    console.log('I am at grade ' + this.grade);
+                }
+            }
+
+            // ES6引入的class和原有的JavaScript原型继承，实际上没有任何区别
+            // class的作用就是让JavaScript引擎去实现原来需要我们自己编写的原型链代码
+
+        };
+    </script>
+</head>
+
+<body>
+    <div>classInheritance</div>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>higherOrderFunction</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function() {
+            // 高阶函数
+            // 变量可以指向函数，函数的参数能接收变量
+            // 一个函数可以接收另一个函数作为参数，这种函数就称为高阶函数
+            function add(x, y, f) {
+                return f(x) + f(y);
+            }
+
+            let x = add(-5, 6, Math.abs);
+            console.log(x); // 11
+
+            // map/reduce
+            // map()方法定义在Array中，调用Array的map()方法，传入自己的参数，就得到一个新的Array
+            function pow(x) {
+                return x * x;
+            }
+
+            let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            // map()传入的参数是pow，即函数对象本身
+            let result = arr.map(pow);
+            console.log(result); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+            console.log(arr.map(String)); // ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+            // Array的reduce()把一个函数组作用在这个Array的[x1, x2, x3...]上
+            // 这个函数必须接收两个参数，reduce()把结果继续和序列的下一个元素做累积
+            // [x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)
+            let result2 = arr.reduce(function(x, y) {
+                return x + y;
+            });
+
+            console.log(result2); // 45
+
+            // filter
+            // 用于把Array的某些元素过滤掉，然后返回剩下的元素
+            // filter()把传入的函数依次作用于每个元素，然后根据返回值true or false决定是否保留
+            let result3 = arr.filter(function(x) {
+                return x % 2 !== 0;
+            });
+
+            console.log(result3); // [1, 3, 5, 7, 9]
+
+            // 回调函数
+            // filter()接收的回调函数，可以有多个参数
+            // 通常仅使用第一个参数，表示Array的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身
+            let arr2 = ['A', 'B', 'C'];
+            let result4 = arr2.filter(function(element, index, self) {
+                console.log(element); // 依次打印'A', 'B', 'C'
+                console.log(index); // 依次打印0, 1, 2
+                console.log(self); // self就是变量arr
+
+                return true;
+            });
+
+            // 去除重复元素
+            let arr3 = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+            let result5 = arr3.filter(function(element, index, self) {
+                return self.indexOf(element) === index;
+            });
+
+            console.log(result5); // ["apple", "strawberry", "banana", "pear", "orange"]
+
+            // sort
+            // Array的sort()方法就是用于排序的，默认把所有元素先转换为String再排序
+            let arr4 = [10, 20, 1, 2];
+            let result6 = arr4.sort();
+            console.log(result6); // [1, 10, 2, 20]
+
+            // 如果不知道默认排序规则...
+            // sort()方法也是一个高阶函数，可以接收一个比较函数来实现自定义的顺序
+            result6 = arr4.sort(function(x, y) {
+                if (x < y) {
+                    return 1;
+                }
+
+                if (x > y) {
+                    return -1;
+                }
+
+                return 0;
+            });
+
+            console.log(result6); // [20, 10, 2, 1]
+
+            // every
+            // 判断数组的所有元素是否满足测试条件
+            console.log(arr3.every(function(s) {
+                // 每个元素是否满足s.length > 0
+                return s.length > 0;
+            })); // true
+
+            // find
+            // 用于查找符合条件的第一个元素，如果找到，则返回这个元素
+            console.log(arr3.find(function(s) {
+                return s.toLowerCase() === 'pear';
+            })); // pear
+
+            // findIndex
+            // 查找复合条件的第一个元素，返回这个元素的索引
+            console.log(arr3.findIndex(function(s) {
+                return s.toLowerCase() === 'pear';
+            })); // 3
+
+            // forEach
+            // 把每个元素依次作用于传入的函数，但不会返回新的数组（常用于遍历数组）
+            arr3.forEach(console.log);
+
+        };
+    </script>
+</head>
+
+<body>
+    <div>higherOrderFunction</div>
+</body>
+
+</html>

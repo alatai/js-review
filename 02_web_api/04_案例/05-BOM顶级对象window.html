@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<script>
+    /*
+        window对象是浏览器的顶级对象，它具有双重角色
+        它是JS访问浏览器窗口的一个接口
+        它是一个全局对象。定在全局作用域中的变量、函数都会变成window对象的属性的方法
+        注意：window下的一个特殊属性window.name
+     */
+    // window.document.querySelector()
+    let num = 10;
+
+    console.log(num);
+    console.log(window.num);
+
+    function fn() {
+        console.log(11);
+    }
+
+    fn();
+    window.fn();
+    // alert(11);
+    // window.alert(11)
+    console.dir(window);
+    // var name = 10;
+    console.log(window.name);
+</script>
+</body>
+
+</html>

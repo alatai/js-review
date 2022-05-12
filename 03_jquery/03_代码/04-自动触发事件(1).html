@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("div").on("click", function () {
+                alert(1);
+            });
+
+            // 自动触发事件trigger()
+            // 有些事件希望自动触发，比如轮播图自动播放功能跟点击右侧按钮一致
+            // 可以利用定时器自动触发右侧按钮点击事件，不必鼠标点击触发
+
+            // ①元素.事件()
+            // $("div").click();
+
+            // ②元素.trigger("事件")
+            // $("div").trigger("click");
+
+            // ③元素.triggerHandler("事件")
+            // 该方法不会触发元素的默认行为
+            $("div").triggerHandler("click");
+
+            $("input").on("focus", function() {
+                $(this).val("hello world");
+            });
+
+            // $("input").focus();
+            $("input").triggerHandler("focus");
+        });
+    </script>
+</head>
+<body>
+
+<div></div>
+<input type="text">
+</body>
+
+</html>

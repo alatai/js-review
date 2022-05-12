@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domOperation</title>
+    <script type="text/javascript">
+        'use strict';
+
+        window.onload = function () {
+            // 操作DOM
+            // HTML文档被浏览器解析后就是一棵DOM树，要改变HTML结构，就需要通过JavaScript来操作DOM
+            // 操作一个DOM节点实际上就这么几个操作
+            // 更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容
+            // 遍历：遍历该DOM节点下的子节点，以便进行进一步操作
+            // 添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点
+            // 删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点
+
+            // 更新DOM
+            // 方式一：修改innerHTML属性
+            // 不但可以修改一个DOM节点的文本内容，还可以直接通过HTML片段修改DOM节点内部的子树
+            let p = document.getElementById('p-id');
+            // 用innerHTML时要注意，是否需要写入HTML
+            // 如果写入的字符串是通过网络拿到了，要注意对字符编码来避免XSS攻击
+            p.innerHTML = 'ABC';
+            p.innerHTML = 'ABC<span style="color: red">RED</span>XYZ';
+
+            // 方式二：修改innerText或textContent属性
+            // 这样可以自动对字符串进行HTML编码，包装无法设置任何HTML标签p
+            p.innerText = '<script>alert("Hi")<\/script>'; // HTML被自动编码，无法设置一个<script>节点:
+
+            // innerText不返回隐藏元素的文本，而textContent返回所有文本
+
+            // 修改CSS时需要使用驼峰命名
+            p.style.color = '#ff0000';
+            p.style.fontSize = '20px';
+            p.style.paddingTop = '2em';
+
+            // 插入DOM
+            // innerHTML可以修改DOM节点内容，相当于插入了新节点，但是会替换掉原来的所有子节点
+            // appendChild
+            // 把一个子节点添加到父节点的最后一个子节点
+            let js = document.getElementById('js');
+            let list = document.getElementById('list');
+            list.appendChild(js);
+
+            // insertBefore
+            let ref = document.getElementById('python');
+            let haskell = document.createElement('p');
+            haskell.id = 'haskell';
+            haskell.innerText = 'Haskell';
+            // 使用insertBefore重点是要拿到一个“参考子节点”的引用
+            list.insertBefore(haskell, ref);
+
+            // 删除DOM
+            // 要删除一个节点，首先要获得该节点本身以及它的父节点
+            // 然后调用父节点的removeChild把自己删掉
+            let parent = document.getElementById('parent');
+            // 删除多个节点时，要注意children属性时刻都在变化
+            parent.removeChild(parent.children[0]);
+
+        };
+    </script>
+</head>
+
+<body>
+<div>domOperation</div>
+
+<p id="p-id">...</p>
+
+<p id="js">JavaScript</p>
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+
+<div id="parent">
+    <p>First</p>
+    <p>Second</p>
+</div>
+</body>
+
+</html>

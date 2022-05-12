@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7c372ac6-130b-4d74-be3b-9dbf6e5798a9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gXvlgFU3S7IposD98HZNN6W0R1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/04_heigher_js" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/04_heigher_js" />
+      <recent name="$PROJECT_DIR$/02_web_api" />
+      <recent name="$PROJECT_DIR$/03_jquery/03_代码" />
+      <recent name="$PROJECT_DIR$/03_jquery" />
+      <recent name="$PROJECT_DIR$/web_api" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/foundation" />
+      <recent name="$PROJECT_DIR$/foundation/js/objectPrograming" />
+      <recent name="$PROJECT_DIR$/foundation/js/function" />
+      <recent name="$PROJECT_DIR$/foundation/js/browsers" />
+      <recent name="$PROJECT_DIR$/foundation/js/standObject" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c372ac6-130b-4d74-be3b-9dbf6e5798a9" name="Default Changelist" comment="" />
+      <created>1598273905416</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598273905416</updated>
+      <workItem from="1598273907525" duration="2641000" />
+      <workItem from="1598277131808" duration="241000" />
+      <workItem from="1598931739819" duration="77000" />
+      <workItem from="1601516131962" duration="27000" />
+      <workItem from="1603945488949" duration="145000" />
+      <workItem from="1605335962751" duration="19910000" />
+      <workItem from="1605498038401" duration="2383000" />
+      <workItem from="1605782910372" duration="321000" />
+      <workItem from="1606011848986" duration="3121000" />
+      <workItem from="1606114239978" duration="10355000" />
+      <workItem from="1606196764112" duration="9342000" />
+      <workItem from="1606282790309" duration="11787000" />
+      <workItem from="1606369100345" duration="10221000" />
+      <workItem from="1607335302651" duration="486000" />
+      <workItem from="1608121706189" duration="12790000" />
+      <workItem from="1608295243800" duration="195000" />
+      <workItem from="1608518689363" duration="10721000" />
+      <workItem from="1608614239872" duration="19082000" />
+      <workItem from="1608778706657" duration="14944000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

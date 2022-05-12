@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+    <script type="text/javascript">
+        'use strict';
+
+        // 全局作用域
+        // JavaScript默认有一个全局对象window，全局作用域的变量实际上是绑定到window的一个属性
+        var course = 'Learn JavaScirpt';
+        alert(course);
+        alert(window.course);
+
+        // alert()函数也是window的一个变量
+        window.alert('调用了window.alert()');
+        // 把alert保存到另一个变量
+        var old_alert = window.alert;
+        // 给alert赋一个新函数
+        window.alert = function () {
+            console.log('new alert()');
+        }
+
+        // 名字空间
+        // 不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突
+        // 减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中
+        // 唯一的全局变量MYAPP
+        var MYAPP = {};
+        // 其他变量
+        MYAPP.name = 'myapp';
+        MYAPP.version = 1.0;
+
+        // 其他函数
+        MYAPP.foo = function () {
+            return 'foo';
+        }
+
+        window.onload = function () {
+            // 函数定义和调用
+            // 方式一
+            function xx() {
+
+            }
+
+            // 方式二
+            // JavaScript的函数也是一个对象
+            let abs = function (x) {
+                if (x >= 0) {
+                    return x;
+                } else {
+                    return -x;
+                }
+            }
+
+            // arguments关键字
+            // 只在函数内部起作用，并且永远指向当前函数调用者传入的所有参数（类似Array，但不一样）
+            function foo(x) {
+                console.log('x = ' + x);
+
+                for (let i = 0; i < arguments.length; i++) {
+                    console.log('arg ' + i + ' = ' + arguments[i]);
+                }
+            }
+
+            foo(10, 20, 30);
+
+            // rest参数
+            // ES6标准引入，方便获取剩余参数
+            function foo2(a, b, ...rest) {
+                console.log('a = ' + a);
+                console.log('b = ' + b);
+                console.log(rest);
+            }
+
+            foo2(1, 2, 3, 4, 5);
+
+            // return 语句
+            // JavaScript引擎有在行末自动添加分号的机制
+            function foo3() {
+                // 以下写法大坑
+                /*
+                return
+                {
+                    // TO DO
+                };
+                */
+
+                // 正确写法
+                return {
+                    name: 'foo3'
+                };
+            }
+
+            console.log(foo3());
+
+            // 变量作用域与解构赋值
+            // 变量提升
+            // JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量”提升“的函数顶部
+            function foo4() {
+                // ES5中var和function的申明存在变量提升
+                // ES6中的let、const则不存在
+                var x = 'Hello, ' + y;
+
+                console.log(x); // Hello, undefined
+
+                // JavaScript引擎自动提升变量y的声明，但不会提升变量y的赋值
+                var y = 'Tom';
+            }
+
+            foo4();
+
+            alert(); // new alert()
+
+            // 局部作用域
+            // 由于JavaScript的变量作用域实际上是函数内部，for循环等语句块中是无法定义具有局部作用域的变量
+            function foo4() {
+                // for (var i = 0; i < 100; i++) {
+                // 为解决块级作用域，ES6引入了新的关键字let，用let替代var可以申明一个块级
+                for (let i = 0; i < 100; i++) {
+                    // TODO
+                }
+
+                // i += 100; // var情况下仍然可以引用变量，let时SyntaxError
+            }
+
+            // 常量
+            // ES6标准引入新关键字const来定义常量，const与let都具有块级作用域
+            const PI = 3.14;
+            // PI = 3; // 某些浏览器不报错，但是无效果
+
+            // 解构赋值
+            // 从ES6开始，JavaScript引入了解构赋值，可以同时对一组变量进行赋值
+            // 在ES6中，可以使用解构赋值，直接对多个变量同时赋值
+            let [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+            console.log('x = ' + x + ', y = ' + y + ', z = ' + z);
+            // ...
+
+        };
+    </script>
+</head>
+
+<body>
+<div>function</div>
+</body>
+
+</html>

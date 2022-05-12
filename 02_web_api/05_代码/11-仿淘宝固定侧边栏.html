@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-bar">
+    <span class="goBack">返回顶部</span>
+</div>
+<div class="header w">头部区域</div>
+<div class="banner w">banner区域</div>
+<div class="main w">主体部分</div>
+
+<script>
+    // 获取元素
+    let sliderBar = document.querySelector('.slider-bar');
+    let banner = document.querySelector('.banner');
+    let main = document.querySelector('.main');
+    let goBack = document.querySelector('.goBack');
+
+    let bannerTop = banner.offsetTop;
+    let sliderBarTop = sliderBar.offsetTop - bannerTop; // 侧边栏固定定位之后应该变化的数值
+    let mainTop = main.offsetTop;
+
+    // 页面滚动事件
+    document.addEventListener('scroll', function () {
+        // 当页面被卷去的头部 >= bannerTop，侧边栏改为固定定位
+        if (window.pageYOffset >= bannerTop) { // 页面被卷去的头部
+            sliderBar.style.position = 'fixed';
+            sliderBar.style.top = sliderBarTop + 'px';
+        } else {
+            sliderBar.style.position = 'absolute';
+            sliderBar.style.top = '300px';
+        }
+
+        if (window.pageYOffset >= mainTop) {
+            goBack.style.display = 'block';
+        } else {
+            goBack.style.display = 'none';
+        }
+    });
+
+    /* 三大系列总结 */
+    /* element.offsetWidth: 返回自身包括padding、边框、内容区的宽度，返回数值不带单位 */
+    /* element.clientWidth: 返回自身包括padding、内容区的宽度，不含边框，返回数值不带单位 */
+    /* element.scrollWidth: 返回自身实际的宽度，不含边框，返回数值不带单位 */
+
+    /* 主要用法 */
+    /* offset系列经常用于获得元素位置：offsetTop、offsetLeft */
+    /* client经常用于获取元素大小：clientWidth、clientHeight */
+    /* scroll经常用于获取滚动距离：scrollTop，scrollLeft */
+    /* 注意页面滚动的距离通过window。pageXOffset获得 */
+</script>
+
+</body>
+
+</html>
